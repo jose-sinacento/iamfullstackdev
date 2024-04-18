@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from './Home.jsx'
 import ItemDetailPage from "./ItemDetailPage.jsx";
-
+import InputCreate from "./InputCreate.jsx";
 
 const App = () => {
   const [data, setData] = useState(null)
@@ -27,18 +27,18 @@ useEffect(() => {
       <div>
         <nav>
           <Link to="/">Inicio</Link>
-     
         </nav>
         {data === null 
         ? (<div>cargando...</div>) 
         : 
           <Routes>
+            <Route path="/create" element={<InputCreate />} />
             <Route path="/" element={<Home data={data} />} />
-           
             {data.map(item => (
               <Route key={item._id} path={`/${item._id}`} element={<ItemDetailPage item={item}/>} />
             ))
             }
+            
           </Routes>
         }
         
