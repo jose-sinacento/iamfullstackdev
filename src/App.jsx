@@ -6,7 +6,7 @@ import InputCreate from "./InputCreate.jsx";
 
 const App = () => {
   const [data, setData] = useState(null)
-  const urlApi = 'http://localhost:3000'
+  const urlApi = 'http://localhost:3000/'
 
 const fetchData = async () => {
   try {
@@ -32,7 +32,7 @@ useEffect(() => {
         ? (<div>cargando...</div>) 
         : 
           <Routes>
-            <Route path="/create" element={<InputCreate />} />
+            <Route path="/create" element={<InputCreate data = {data} />} />
             <Route path="/" element={<Home data={data} />} />
             {data.map(item => (
               <Route key={item._id} path={`/${item._id}`} element={<ItemDetailPage item={item}/>} />

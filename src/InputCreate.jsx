@@ -1,19 +1,32 @@
 import { useState, useEffect } from "react";
 
-const InputCreate = () => {
+const InputCreate = ({data}) => {
 const [newTask, setNewTask] = useState('');
-
-
-
+const urlApi = 'http://localhost:3000/create'
 
 useEffect(() => {
 console.log("hola mundo")
+//console.log(data)
+}, []);
 
-}, [handlesubmit]);
 
    const handlesubmit = (e)  => {
     console.log("probando handlesubmit")
     e.preventDefault();
+    
+
+    const fetchCreate = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify({title:newTask}), 
+      }
+    fetch(urlApi, fetchCreate)
+    .then(() => {
+        console.log('new task added')
+    
+    })
    }
 
   return (
